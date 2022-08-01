@@ -3,27 +3,9 @@ import React, { useState } from 'react'
 import ScoreBoard from './components/ScoreBoard'
 import InteractiveGrid from './components/InteractiveGrid';
 import Header from './components/header';
+import Instructions from './components/instructions';
 
 function App() {
-  //attaching state tracking to images (data survives page rerenders at this level)
-
-  
-  const [score, updateScore] = useState(0)
-  const [clickTracker, updateClickTracker] = useState({
-    '0': null,
-    '1': null,
-    '2': null,
-    '3': null,
-    '4': null,
-    '5': null,
-    '6': null,
-    '7': null,
-    '8': null,
-    '9': null,
-    '10': null,
-    '11': null,
-  })
-
   const cleanObject = {
     '0': null,
     '1': null,
@@ -37,6 +19,11 @@ function App() {
     '9': null,
     '10': null,
     '11': null,}
+
+  const [score, updateScore] = useState(0)
+  const [clickTracker, updateClickTracker] = useState(cleanObject)
+
+
 
   function checkIfClicked(id) {
     let newState = {}
@@ -56,25 +43,24 @@ function App() {
     }
   }
 
-  function incrementScore() {
-    const newScore = score + 1;
-    updateScore(newScore)
-  }
-
   return (
     <div>
-      <Header/>
-      <div className ='flex justify-center px-48'>
-        <p className = 'px-24 text-lg font-semibold'>
-          Your mission, should you choose to accept it: click all the pictures only once!
-          Every time you click a new picture you haven't already picked, you get a point.
-          Click one you already clicked and the game starts over! Good luck!
-        </p>
+      <div className="header">
+        <Header/>
       </div>
-      <div className ='flex justify-center text-xl font-bold'>
-        <ScoreBoard score = {score}/>
-      </div>
-      <InteractiveGrid checkIfClicked={checkIfClicked} /> 
+
+      <div className="">
+        <div className ='grid grid-rows-10 grid-cols-10 justify-center text-xl font-bold'>
+          <div className="col-start-1 col-span-1">
+            <ScoreBoard score = {score}/>
+            <Instructions/>
+          </div>
+          <div className='row-start-1 py-6 row-span-full col-start-2 col-span-full'>
+            <InteractiveGrid checkIfClicked={checkIfClicked} />
+          </div>
+        </div>
+        
+      </div> 
     </div>
     );
 }

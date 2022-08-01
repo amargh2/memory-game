@@ -7,10 +7,14 @@ import seoulImage from './componentimages/seoul.jpg'
 import shanghaiImage from './componentimages/shanghai.jpg'
 import tokyoImage from './componentimages/tokyo.jpg'
 import tokyoImage2 from './componentimages/tokyo2.jpg'
+import bangkokImage from './componentimages/bangkok.jpg'
+import seattleImage from './componentimages/seattle.jpg'
+import laPazImage from './componentimages/lapaz.jpg'
 
 function InteractiveGrid (props) {
   const imageArray = [chicagoImage, londonImage, newYorkImage, newYorkImage2, 
-    parisImage, seoulImage, shanghaiImage, tokyoImage, tokyoImage2]
+    parisImage, seoulImage, shanghaiImage, tokyoImage, tokyoImage2, bangkokImage,
+    laPazImage, seattleImage]
   
   const processedImages = imageArray.map(image => {
     return (
@@ -43,7 +47,7 @@ function InteractiveGrid (props) {
 shuffle(processedImages)
 
   return ( 
-    <div className = 'lg:grid grid-cols-6 grid-rows-2 gap-2 sm:flex sm:flex-col px-60'>
+    <div className = 'lg:grid grid-cols-6 grid-rows-2 gap-2 sm:flex sm:flex-col px-24'>
       {processedImages}
     </div>
   )
